@@ -6,8 +6,8 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>1ec93688-6535-4c10-890b-e0da886cff3d</ProjectGuid>
-    <RootNamespace>API</RootNamespace>
+    <ProjectGuid>a9299fb6-c897-4b1c-8270-488ff375cd80</ProjectGuid>
+    <RootNamespace>BasicElasticsearch.WebApi</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

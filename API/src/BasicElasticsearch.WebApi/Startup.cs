@@ -7,9 +7,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Swashbuckle.AspNetCore.Swagger;
+using Swashbuckle.Swagger.Model;
+using Microsoft.Extensions.PlatformAbstractions;
+using AutoMapper;
+using BasicElasticsearch.WebApi.Services;
+using BasicElasticsearch.WebApi.Interface;
 
-namespace API
+namespace BasicElasticsearch.WebApi
 {
     public class Startup
     {
@@ -40,25 +44,36 @@ namespace API
 
             services.AddMvc();
 
-            services.AddSwaggerGen(c =>
+            services.AddAutoMapper();
+
+            services.AddSwaggerGen();
+
+            services.ConfigureSwaggerGen(options =>
+            {
+                options.SingleApiVersion(new Info
                 {
-                    c.SwaggerDoc("v1",
-                    new Info
-                    {
-                        Title = "Elasticsearch API",
-                        Version = "v1",
-                        Description = "Final project for Magenic Master Elasticsearch",
-                        TermsOfService = "None",
-                        Contact = new Contact { Name = "Kenneth Canet", Email = "kennethca@magenic.com", Url = "https://magenic.com" }
-                    });
+                    Version = "v1",
+                    Title = "Magenic Master : Basic Elasticsearch - Final Project",
+                    Description = "Basic Elasticsearch  - Final Project"
+                });
 
-                }
-            );
+                options.IncludeXmlComments(GetXmlCommentsPath());
+                options.DescribeAllEnumsAsStrings();
+            });
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IPassportService, PassportService>();
+
+
+
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseStaticFiles();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -67,11 +82,17 @@ namespace API
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc();
+
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Elasticsearch API");
-            });
+
+            //app.UseSwaggerUi(baseRoute: "/swagger/ui", swaggerUrl: "/swagger/v1/swagger.json");
+            app.UseSwaggerUi();
+        }
+
+        private string GetXmlCommentsPath()
+        {
+            var app = PlatformServices.Default.Application;
+            return System.IO.Path.Combine(app.ApplicationBasePath, System.IO.Path.ChangeExtension(app.ApplicationName + ".WebApi", "xml"));
         }
     }
 }

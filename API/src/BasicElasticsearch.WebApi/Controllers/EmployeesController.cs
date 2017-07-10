@@ -27,10 +27,24 @@ namespace BasicElasticsearch.WebApi.Controllers
         /// <param name="value"></param>
         /// <returns></returns>
         [HttpGet("search")]
-        [ProducesResponseType(typeof(EmployeeViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(SearchViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
         public IActionResult Search([FromBody]string value)
+        {
+            return new OkResult();
+        }
+
+        /// <summary>
+        /// Search employee by filters
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [HttpPut("search/bulk")]
+        [ProducesResponseType(typeof(SearchViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
+        public IActionResult SearchBulk([FromBody]IEnumerable<EmployeeViewModel> test)
         {
             return new OkResult();
         }

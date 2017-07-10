@@ -99,6 +99,42 @@ namespace BasicElasticsearch.WebApi.Services
 
         public IEnumerable<PassportViewModel> GetByFilter(PassportViewModel dto)
         {
+            //try
+            //{
+            //    var models = _repo.GetElasticClient().Search<Passport>(s => s
+            //                    .MinScore(0.01)
+            //                    .Size(1000)
+            //                    .Source(false)
+            //                    .FielddataFields(f =>
+            //                        f.Fields(
+            //                            fields => fields.EmployeePassportID
+            //                            )
+            //                    ));
+
+            //    //var viewModels = new List<PassportViewModel>();
+
+
+
+
+
+
+
+
+
+
+
+            //    models.ToList().ForEach(d =>
+            //    {
+            //        var viewModel = _mapper.Map<PassportViewModel>(d);
+            //        viewModels.Add(viewModel);
+            //    });
+
+            //    return viewModels;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new ArgumentException(ex.Message);
+            //}
             throw new NotImplementedException();
         }
 

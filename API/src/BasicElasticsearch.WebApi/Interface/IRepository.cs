@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nest;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,5 +16,7 @@ namespace BasicElasticsearch.WebApi.Interface
         bool Update(M entity);
         IEnumerable<M> PutMany(IEnumerable<M> entities);
         bool Delete(int id);
+
+        ElasticClient GetElasticClient();
     }
 }

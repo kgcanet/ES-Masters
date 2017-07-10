@@ -65,7 +65,7 @@ namespace BasicElasticsearch.WebApi
 
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddScoped<IPassportService, PassportService>();
-
+            services.AddScoped<IReferenceService, ReferenceService>();
 
 
         }

@@ -107,5 +107,10 @@ namespace BasicElasticsearch.WebApi.Interface
 
             throw new ArgumentException("ElasticSearch Error");
         }
+
+        public ElasticClient GetElasticClient()
+        {
+            return _esClient;
+        }
     }
 }

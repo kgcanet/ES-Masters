@@ -22,7 +22,20 @@ namespace BasicElasticsearch.WebApi.Mapper
 
             CreateMap<PassportViewModel, Passport>().ReverseMap();
 
-            CreateMap<IEnumerable<Employee>, IEnumerable<EmployeeViewModel>>().IgnoreAllPropertiesWithAnInaccessibleSetter().ReverseMap();
+            CreateMap<PositionViewModel, Position>().ReverseMap();
+
+            CreateMap<VisaStatusViewModel, VisaStatus>().ReverseMap();
+
+            CreateMap<VisaTypeViewModel, VisaType>().ReverseMap();
+
+            CreateMap<VisaViewModel, Visa>()//.IgnoreAllPropertiesWithAnInaccessibleSetter().ReverseMap();
+                .ForMember(desti => desti.IsMultipleEntry, source => source.MapFrom(a => a.IsMultipleEntry == "1" ? true : false))
+                .ForMember(desti => desti.EmployeeVisaID, source => source.MapFrom(a => Convert.ToInt32(a.EmployeeVisaID)))
+                .ForMember(desti => desti.EmployeeID, source => source.MapFrom(a => Convert.ToInt32(a.EmployeeID)))
+                .ForMember(desti => desti.VisaTypeID, source => source.MapFrom(a => Convert.ToInt32(a.VisaTypeID)))
+                .ForMember(desti => desti.VisaStatusID, source => source.MapFrom(a => Convert.ToInt32(a.VisaStatusID)))
+                .ForMember(desti => desti.EmployeeVisaID, source => source.MapFrom(a => a.EmployeeVisaID.Trim())).ReverseMap();
+
         }
     }
 }

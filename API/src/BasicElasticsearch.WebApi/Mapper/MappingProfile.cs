@@ -28,6 +28,8 @@ namespace BasicElasticsearch.WebApi.Mapper
 
             CreateMap<VisaTypeViewModel, VisaType>().ReverseMap();
 
+            CreateMap<SearchViewModel, Search>().ReverseMap();
+
             CreateMap<VisaViewModel, Visa>()//.IgnoreAllPropertiesWithAnInaccessibleSetter().ReverseMap();
                 .ForMember(desti => desti.IsMultipleEntry, source => source.MapFrom(a => a.IsMultipleEntry == "1" ? true : false))
                 .ForMember(desti => desti.EmployeeVisaID, source => source.MapFrom(a => Convert.ToInt32(a.EmployeeVisaID)))

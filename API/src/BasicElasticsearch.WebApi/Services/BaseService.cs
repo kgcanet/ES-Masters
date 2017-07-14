@@ -22,21 +22,21 @@ namespace BasicElasticsearch.WebApi.Services
         {
             Uri node = new Uri("http://10.155.64.92:9200");
             ConnectionSettings settings = new ConnectionSettings(node)
-                .DefaultIndex(index);
+                .DefaultIndex(index)
 
             /////////////////////////////////////////////////////
             //// Uncomment for debugging purpose
             /////////////////////////////////////////////////////
 
-            //.DisableDirectStreaming()
-            //.OnRequestCompleted(details =>
-            //{
-            //    Debug.WriteLine("### ES REQEUST ###");
-            //    if (details.RequestBodyInBytes != null) Debug.WriteLine(Encoding.UTF8.GetString(details.RequestBodyInBytes));
-            //    Debug.WriteLine("### ES RESPONSE ###");
-            //    if (details.ResponseBodyInBytes != null) Debug.WriteLine(Encoding.UTF8.GetString(details.ResponseBodyInBytes));
-            //})
-            //.PrettyJson();
+            .DisableDirectStreaming()
+            .OnRequestCompleted(details =>
+            {
+                Debug.WriteLine("### ES REQEUST ###");
+                if (details.RequestBodyInBytes != null) Debug.WriteLine(Encoding.UTF8.GetString(details.RequestBodyInBytes));
+                Debug.WriteLine("### ES RESPONSE ###");
+                if (details.ResponseBodyInBytes != null) Debug.WriteLine(Encoding.UTF8.GetString(details.ResponseBodyInBytes));
+            })
+            .PrettyJson();
 
 
             return new ElasticClient(settings);

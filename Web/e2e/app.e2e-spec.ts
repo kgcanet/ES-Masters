@@ -1,10 +1,10 @@
-import { WebPage } from './app.po';
+import { AngularAdalPage } from './app.po';
 
-describe('web App', () => {
-  let page: WebPage;
+describe('angular-adal App', () => {
+  let page: AngularAdalPage;
 
   beforeEach(() => {
-    page = new WebPage();
+    page = new AngularAdalPage();
   });
 
   it('should display welcome message', () => {

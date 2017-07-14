@@ -26,27 +26,54 @@ namespace BasicElasticsearch.WebApi.Controllers
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        [HttpGet("search")]
+        [HttpPost("search")]
         [ProducesResponseType(typeof(SearchViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
-        public IActionResult Search([FromBody]string value)
+        public IActionResult Search([FromBody]SearchRequest search)
         {
-            return new OkResult();
+            try
+            {
+                var results = _employeeService.Search(search);
+                return Ok(results);
+            }
+            catch (Exception ex)
+            {
+                //Errors
+                var errors = new List<ErrorDetails>();
+                errors.Add(new ErrorDetails(Id: "1", Detail: ex.Message) { });
+
+
+                return BadRequest(new Error(errors));
+            }
         }
 
         /// <summary>
-        /// Search employee by filters
+        /// Put Many search
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="search"></param>
         /// <returns></returns>
         [HttpPut("search/bulk")]
+        [Obsolete]
         [ProducesResponseType(typeof(SearchViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
-        public IActionResult SearchBulk([FromBody]IEnumerable<EmployeeViewModel> test)
+        public IActionResult SearchBulk([FromBody]IEnumerable<SearchViewModel> search)
         {
-            return new OkResult();
+            try
+            {
+                _employeeService.PutManySearch(search);
+                return Ok(search);
+            }
+            catch (Exception ex)
+            {
+                //Errors
+                var errors = new List<ErrorDetails>();
+                errors.Add(new ErrorDetails(Id: "1", Detail: ex.Message) { });
+
+
+                return BadRequest(new Error(errors));
+            }
         }
 
         /// <summary>
@@ -164,6 +191,7 @@ namespace BasicElasticsearch.WebApi.Controllers
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
         [HttpPut("bulk")]
+        [Obsolete]
         public IActionResult PutMany([FromBody]IEnumerable<EmployeeViewModel> employes)
         {
             try

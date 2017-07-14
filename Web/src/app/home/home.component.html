@@ -1,0 +1,42 @@
+<div>
+    <h3>Search Employees</h3>
+    <div class="search-box">
+        <form class="form-inline">
+            <input type="text" placeholder="Employee Name" class="form-control input-md"   />
+            <i class="glyphicon glyphicon-user form-control-feedback"></i> &nbsp;&nbsp;&nbsp;
+            <input type="text" placeholder="Employee No." class="form-control input-md" /> &nbsp;&nbsp;&nbsp;
+            <select class="form-control input-md"
+                    >
+                <option value="" selected>Select Position</option>
+            </select>
+            <div class="search-filter">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="checkbox-inline"><input type="checkbox" /> Expiring Visa</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="checkbox-inline"><input type="checkbox"  /> No Passport</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="checkbox-inline"><input type="checkbox"  /> No Visa</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <label class="checkbox-inline"><input type="checkbox"  /> Expiring Passport</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="checkbox-inline"><input type="checkbox"  /> With Valid Visa with Annotation</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <label class="checkbox-inline"><input type="checkbox"  /> Processing Visa</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="button-set">
+            <button class="btn btn-primary" >Search</button>
+            <button class="btn btn-secondary btn-clear-filters">Clear Filters</button>
+        </div>
+    </div>
+</div>

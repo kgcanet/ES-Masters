@@ -186,6 +186,7 @@ namespace BasicElasticsearch.WebApi.Controllers
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
         [HttpPut("bulk/position")]
+        [Obsolete]
         public IActionResult PutManyPosition([FromBody]IEnumerable<PositionViewModel> positions)
         {
             try
@@ -213,6 +214,7 @@ namespace BasicElasticsearch.WebApi.Controllers
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
         [HttpPut("bulk/visatype")]
+        [Obsolete]
         public IActionResult PutManyVisaType([FromBody]IEnumerable<VisaTypeViewModel> visaTypes)
         {
             try
@@ -241,6 +243,7 @@ namespace BasicElasticsearch.WebApi.Controllers
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
         [HttpPut("bulk/visastatus")]
+        [Obsolete]
         public IActionResult PutManyVisaType([FromBody]IEnumerable<VisaStatusViewModel> visaStatuses)
         {
             try

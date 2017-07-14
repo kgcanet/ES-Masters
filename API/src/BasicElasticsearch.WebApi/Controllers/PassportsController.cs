@@ -161,6 +161,7 @@ namespace BasicElasticsearch.WebApi.Controllers
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(Error), (int)HttpStatusCode.BadRequest)]
         [HttpPut("bulk")]
+        [Obsolete]
         public IActionResult PutMany([FromBody]IEnumerable<PassportViewModel> passports)
         {
             try
